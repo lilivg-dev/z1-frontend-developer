@@ -1,12 +1,12 @@
 import React from 'react';
-import { Nav } from './styles';
+import { Container } from './styles';
 
 function Header() {
   return (
     <>
-      <Nav>
+      <Container>
         <h2>BankClient</h2>
-      </Nav>
+      </Container>
     </>
   );
 }
