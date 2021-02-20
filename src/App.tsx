@@ -1,21 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from './styles/GlobalStyles';
-import { themes } from './styles/theme';
+import { GlobalStyle } from './style/GlobalStyles';
+import { themes } from './style/theme';
 import './App.css';
-import './styles/fonts.css';
-import Layout from './components/Layout';
+import './style/fonts.css';
+import HomeView from './containers/Home';
+import CameraView from './containers/Camera';
 
 function App() {
+  const [inCameraMode, setInCameraMode] = useState(false);
+
+  const openCamera = () => setInCameraMode(true);
+  const closeCamera = () => setInCameraMode(false);
+
   return (
     <ThemeProvider theme={themes['light']}>
-      <Router>
-        <Layout />
-        <Switch>
-          <Route path='/' />
-        </Switch>
-      </Router>
+      {inCameraMode ? (
+        <CameraView closeCamera={closeCamera} />
+      ) : (
+        <HomeView openCamera={openCamera} />
+      )}
       <GlobalStyle />
     </ThemeProvider>
   );

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Container, EmptyCard, IDbg } from './styles';
+import { Container, EmptyCard, IDbg } from './style';
 import Button from '../Button';
+import { Props } from './types';
 
-function Scanner() {
+function Scanner({ openCamera }: Props) {
   return (
     <>
       <Container>
@@ -13,7 +14,7 @@ function Scanner() {
         </p>
         <EmptyCard>
           <IDbg />
-          <Button>TAKE PICTURE</Button>
+          <Button onClick={openCamera}>TAKE PICTURE</Button>
         </EmptyCard>
       </Container>
     </>

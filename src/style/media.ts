@@ -1,6 +1,6 @@
 export const breakpoints = {
-  mobile: 600, // px
-  tablet: 960 // px
+  mobile: 524, // px
+  tablet: 992 // px
 };
 
 export const keysOf = <T extends object>(object: T) => Object.keys(object) as (keyof typeof object)[];
