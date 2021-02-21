@@ -1,3 +1,7 @@
+import { Status } from "../../App";
+
 export type Props = {
-  closeCamera: () => void;
+  changeStatus: (status:Status) => void;
+  status: Status;
+  image: string;
 }

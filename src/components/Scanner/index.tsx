@@ -1,9 +1,23 @@
 import React from 'react';
-import { Container, EmptyCard, IDbg } from './style';
+import {
+  Container,
+  EmptyCard,
+  ApCard,
+  ApStatus,
+  Check,
+  RjCard,
+  RjStatus,
+  Times,
+  IMG,
+} from './style';
 import Button from '../Button';
 import { Props } from './types';
+import { Status } from '../../App';
+import svg from '../../images/IDbg.svg';
 
-function Scanner({ openCamera }: Props) {
+function Scanner({ changeStatus, status, image }: Props) {
+  const changeToPictureTaken = () => changeStatus(Status.PictureTaken);
+
   return (
     <>
       <Container>
@@ -12,10 +26,30 @@ function Scanner({ openCamera }: Props) {
           Take a picture. It may take time to validate your personal
           information.
         </p>
-        <EmptyCard>
-          <IDbg />
-          <Button onClick={openCamera}>TAKE PICTURE</Button>
-        </EmptyCard>
+
+        {status === Status.Initial ? (
+          <EmptyCard>
+            <img src={svg} alt='' />
+            <Button onClick={changeToPictureTaken}>TAKE PICTURE</Button>
+          </EmptyCard>
+        ) : null}
+        {status === Status.Approved ? (
+          <ApCard>
+            <IMG src={image} alt='' />
+            <ApStatus>
+              <Check className='fas fa-check'></Check> ACCEPTED
+            </ApStatus>
+          </ApCard>
+        ) : null}
+        {status === Status.Rejected ? (
+          <RjCard>
+            <IMG src={image} alt='' />
+            <Button onClick={changeToPictureTaken}>RETAKE PICTURE</Button>
+            <RjStatus>
+              <Times className='fas fa-times'></Times> REJECTED
+            </RjStatus>
+          </RjCard>
+        ) : null}
       </Container>
     </>
   );

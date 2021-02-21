@@ -3,11 +3,11 @@ import Header from '../../components/Header';
 import Scanner from '../../components/Scanner';
 import { Props } from './types';
 
-function Home({ openCamera }: Props) {
+function Home({ changeStatus, status, image }: Props) {
   return (
     <>
       <Header />
-      <Scanner openCamera={openCamera} />
+      <Scanner changeStatus={changeStatus} status={status} image={image} />
     </>
   );
 }

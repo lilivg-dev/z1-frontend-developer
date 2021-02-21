@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-  position: relative;
+  position: absolute;
   z-index: 1;
   padding: 1rem 1.6rem;
   font-size: var(--bodyFontSize);

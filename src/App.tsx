@@ -6,19 +6,28 @@ import './App.css';
 import './style/fonts.css';
 import HomeView from './containers/Home';
 import CameraView from './containers/Camera';
+import img from './images/idcard.png';
+
+export enum Status {
+  Approved = 'APPROVED',
+  Rejected = 'REJECTED',
+  LowLight = 'LOW_LIGHT',
+  PictureTaken = 'PICTURE_TAKEN',
+  Initial = 'Initial',
+}
 
 function App() {
-  const [inCameraMode, setInCameraMode] = useState(false);
+  const [status, setStatus] = useState(Status.Initial);
+  const [image] = useState(img);
 
-  const openCamera = () => setInCameraMode(true);
-  const closeCamera = () => setInCameraMode(false);
+  const changeStatus = (status: Status) => setStatus(status);
 
   return (
     <ThemeProvider theme={themes['light']}>
-      {inCameraMode ? (
-        <CameraView closeCamera={closeCamera} />
+      {status === Status.PictureTaken || status === Status.LowLight ? (
+        <CameraView changeStatus={changeStatus} status={status} image={image} />
       ) : (
-        <HomeView openCamera={openCamera} />
+        <HomeView changeStatus={changeStatus} status={status} image={image} />
       )}
       <GlobalStyle />
     </ThemeProvider>
