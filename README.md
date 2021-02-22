@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# z1 Frontend Developer Code Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The indications for the code test were the next ones: 
+- Create a repository on Github with the name **z1-frontend-developer**.
+- There is no set time to submit the test. However, we recommend to use a maximum of 3-4 days and submit as much as you can.
+- Implement the frontend using React with TypeScript and using as few dependencies as possible. We recommend bootstrapping with create-react-app.
+- For styling use either css/scss modules or styled components.
+- Add unit and integration tests.
+- Making a POST request to the backend will return {"summary":{"outcome": "Approved"}} when it considers it has succeeded and {"summary":{"outcome": "Too Much Glare"}} when it fails.
 
-## Available Scripts
+I've tried to do them all but, for reasons I will explain later, I couldn't complete them.
 
-In the project directory, you can run:
+Here is a demo of the test: [https://bankclient.netlify.app/](https://bankclient.netlify.app/)
 
-### `yarn start`
+## React with TypeScript
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To be honest, I've only been developing with React and TypeScript for a very short time. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+From my point of view, they're very useful tools that make it much easier to write code and be able to reuse it and find bugs faster. That's why I want to keep learning about both of them. 
 
-### `yarn test`
+I also used Create React App to create the whole application from scratch.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Therefore, implementing the functionality of the camera was a challenge for me. In fact, at first I was doing research to see how I could do it, but time was running out and I chose to focus on the rest of the test. So I decided to do a simulation of how the app would work if I had access to the camera and could take a real image. For the same reason I had to give up testing.
 
-### `yarn build`
+## Styled Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I decided to use Styled Components for the test because it allowed me to have the styles much more organised. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The other reason why I prefer to use it, is that you can use props to conditionally render css and it makes it much easier to work with.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Also, to maintain consistency in styling I decided to follow [Mark Otto's CSS & HTML Style Guide](https://codeguide.co) as much as possible.
 
-### `yarn eject`
+## Backend and different states
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Since the backend only returnes two responses, (accepted or rejected) which should appear as two different states in the home, but the design of the app also has the 'Low Light' state, I decided to add it with a setTimeout before the image taken was displayed.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Obviously, if the picture was actually taken by the camera, the 'Picture taken' status would be preceded by a status before it, but in my case the picture was always taken.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Final conclusion
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This test has been a challenge for me, a challenge that I hope to be able to complete with more time because I have learned a lot from it. 
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+It has also served as motivation for me to keep learning and going deeper into frontend development. 
