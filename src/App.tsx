@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/GlobalStyles';
 import { themes } from './style/theme';
