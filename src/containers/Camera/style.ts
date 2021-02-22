@@ -21,7 +21,7 @@ export const Container = styled.div `
     background-repeat: no-repeat;
   }
   ${from.laptop} {
-    background-position: initial;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 
