@@ -19,25 +19,28 @@ function Camera({ changeStatus, status, image }: Props) {
   const mounted = true;
 
   useEffect(() => {
-    if (!mounted)
-      return () => {
-        if (status === Status.PictureTaken) {
-          setTimeout(() => {
-            fetch('https://front-exercise.z1.digital/evaluations', {
-              method: 'POST',
-              body: image,
-            })
-              .then((response) => response.json())
-              .then((response) => {
-                if (response.summary.outcome === 'Approved') {
-                  changeStatus(Status.Approved);
-                } else {
-                  changeStatus(Status.Rejected);
-                }
-              });
-          }, 1500);
-        }
-      };
+    let mounted = true;
+    if (status === Status.PictureTaken) {
+      setTimeout(() => {
+        fetch('https://front-exercise.z1.digital/evaluations', {
+          method: 'POST',
+          body: image,
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            if (mounted) {
+              if (response.summary.outcome === 'Approved') {
+                changeStatus(Status.Approved);
+              } else {
+                changeStatus(Status.Rejected);
+              }
+            }
+          });
+      }, 1000);
+    }
+    return () => {
+      mounted = false;
+    };
   }, [status, changeStatus, image, mounted]);
 
   return (
