@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/GlobalStyles';
 import { themes } from './style/theme';
@@ -20,7 +20,10 @@ function App() {
   const [status, setStatus] = useState(Status.Initial);
   const [image] = useState(img);
 
-  const changeStatus = (status: Status) => setStatus(status);
+  const changeStatus = useCallback((status: Status) => {
+    setStatus(status);
+    console.log(status);
+  }, []);
 
   return (
     <ThemeProvider theme={themes['light']}>

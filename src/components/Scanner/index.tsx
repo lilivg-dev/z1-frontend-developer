@@ -16,7 +16,12 @@ import { Status } from '../../App';
 import svg from '../../images/IDbg.svg';
 
 function Scanner({ changeStatus, status, image }: Props) {
-  const changeToPictureTaken = () => changeStatus(Status.PictureTaken);
+  const changeToAnotherStatus = () => {
+    changeStatus(Status.LowLight);
+    setTimeout(() => {
+      changeStatus(Status.PictureTaken);
+    }, 1000);
+  };
 
   return (
     <>
@@ -30,7 +35,7 @@ function Scanner({ changeStatus, status, image }: Props) {
         {status === Status.Initial ? (
           <EmptyCard>
             <img src={svg} alt='' />
-            <Button onClick={changeToPictureTaken}>TAKE PICTURE</Button>
+            <Button onClick={changeToAnotherStatus}>TAKE PICTURE</Button>
           </EmptyCard>
         ) : null}
         {status === Status.Approved ? (
@@ -44,7 +49,7 @@ function Scanner({ changeStatus, status, image }: Props) {
         {status === Status.Rejected ? (
           <RjCard>
             <IMG src={image} alt='' />
-            <Button onClick={changeToPictureTaken}>RETAKE PICTURE</Button>
+            <Button onClick={changeToAnotherStatus}>RETAKE PICTURE</Button>
             <RjStatus>
               <Times className='fas fa-times'></Times> REJECTED
             </RjStatus>

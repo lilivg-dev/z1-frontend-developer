@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Props } from './types';
 import {
   Container,
@@ -11,26 +11,34 @@ import {
 import { Status } from '../../App';
 
 function Camera({ changeStatus, status, image }: Props) {
-  const changeToInitial = () => changeStatus(Status.Initial);
+  const changeToInitial = useCallback(() => {
+    changeStatus(Status.Initial);
+    console.log(status);
+  }, [changeStatus, status]);
+
+  const mounted = true;
 
   useEffect(() => {
-    if (status === Status.PictureTaken) {
-      setTimeout(() => {
-        fetch('https://front-exercise.z1.digital/evaluations', {
-          method: 'POST',
-          body: image,
-        })
-          .then((response) => response.json())
-          .then((response) => {
-            if (response.summary.outcome === 'Approved') {
-              changeStatus(Status.Approved);
-            } else {
-              changeStatus(Status.Rejected);
-            }
-          });
-      }, 1500);
-    }
-  }, [status, changeStatus, image]);
+    if (!mounted)
+      return () => {
+        if (status === Status.PictureTaken) {
+          setTimeout(() => {
+            fetch('https://front-exercise.z1.digital/evaluations', {
+              method: 'POST',
+              body: image,
+            })
+              .then((response) => response.json())
+              .then((response) => {
+                if (response.summary.outcome === 'Approved') {
+                  changeStatus(Status.Approved);
+                } else {
+                  changeStatus(Status.Rejected);
+                }
+              });
+          }, 1500);
+        }
+      };
+  }, [status, changeStatus, image, mounted]);
 
   return (
     <Container>
